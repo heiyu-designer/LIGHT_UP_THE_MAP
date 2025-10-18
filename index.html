@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的旅行足迹</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入 ECharts -->
+    <script src="https://unpkg.com/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 页面标题 -->
+        <header class="header">
+            <h1>我的旅行足迹</h1>
+            <p class="subtitle">点击下方省份，点亮足迹</p>
+        </header>
+
+        <!-- 地图区域 -->
+        <div class="map-container">
+            <div id="china-map" class="china-map">
+                <!-- SVG 地图将在这里渲染 -->
+            </div>
+        </div>
+
+        <!-- 统计信息 -->
+        <div class="stats">
+            <span class="stats-text">已点亮 <span id="selected-count">0</span> / <span id="total-count">34</span> 个省份</span>
+            <div class="action-buttons">
+                <button id="select-all-btn" class="action-btn">全选</button>
+                <button id="clear-all-btn" class="action-btn">清空</button>
+            </div>
+        </div>
+
+        <!-- 省份列表 -->
+        <div class="provinces-container">
+            <div class="province-list" id="province-list"></div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

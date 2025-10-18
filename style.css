@@ -1,0 +1,283 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* 页面标题 */
+.header {
+    text-align: center;
+    padding: 30px 20px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.header h1 {
+    font-size: 2.2em;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 1em;
+    opacity: 0.9;
+}
+
+/* 地图容器 */
+.map-container {
+    padding: 20px;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.china-map {
+    width: 100%;
+    max-width: 100%;
+    height: 600px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.china-map svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* SVG 省份样式 */
+.province-path {
+    fill: #e0e0e0;
+    stroke: #ffffff;
+    stroke-width: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.province-path:hover {
+    fill: #bdbdbd;
+}
+
+.province-path.selected {
+    fill: #ff6b6b;
+    stroke: #ff5252;
+    stroke-width: 2;
+}
+
+/* 统计信息 */
+.stats {
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.stats-text {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: 500;
+}
+
+#selected-count {
+    color: #2196F3;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+#total-count {
+    color: #667eea;
+    font-weight: 700;
+}
+
+/* 操作按钮 */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.action-btn {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#select-all-btn {
+    background: #667eea;
+    color: white;
+}
+
+#select-all-btn:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+#clear-all-btn {
+    background: #f5f5f5;
+    color: #333;
+    border: 2px solid #e0e0e0;
+}
+
+#clear-all-btn:hover {
+    background: #e8e8e8;
+    border-color: #bdbdbd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 省份列表容器 */
+.provinces-container {
+    padding: 30px 25px;
+    background: white;
+}
+
+.province-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* 省份按钮 */
+.province-btn {
+    padding: 10px 20px;
+    background: #f5f5f5;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #333;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    outline: none;
+}
+
+.province-btn:hover {
+    background: #e8e8e8;
+    border-color: #bdbdbd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.province-btn.selected {
+    background: #2196F3;
+    border-color: #1976D2;
+    color: white;
+    font-weight: 600;
+}
+
+.province-btn.selected:hover {
+    background: #1976D2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+}
+
+/* 地图提示框 */
+.map-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    pointer-events: none;
+    z-index: 1000;
+    display: none;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 95%;
+    }
+
+    .china-map {
+        height: 550px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .header {
+        padding: 20px 15px 15px;
+    }
+
+    .header h1 {
+        font-size: 1.6em;
+    }
+
+    .subtitle {
+        font-size: 0.95em;
+    }
+
+    .map-container {
+        padding: 15px 10px;
+    }
+
+    .china-map {
+        height: 450px;
+    }
+
+    .provinces-container {
+        padding: 20px 15px;
+    }
+
+    .province-btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+
+    .stats {
+        padding: 12px;
+    }
+
+    .stats-text {
+        font-size: 1.05em;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+}
