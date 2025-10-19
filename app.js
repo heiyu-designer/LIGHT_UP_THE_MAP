@@ -120,6 +120,7 @@ class ChinaMapApp {
 
             // 从多个 CDN 源尝试加载中国地图数据
             const cdnUrls = [
+                './china.json', // 本地备用文件（优先）
                 'https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json',
                 'https://unpkg.com/echarts@5.4.3/map/json/china.json',
                 'https://cdn.jsdelivr.net/npm/echarts@5.4.3/map/json/china.json'
@@ -168,7 +169,7 @@ class ChinaMapApp {
                     map: 'china',
                     roam: false,
                     selectedMode: false, // 禁用 ECharts 自带的选中模式，使用我们自己的
-                    zoom: 1.25, // 放大地图 25%
+                    zoom: 1.2, // 放大地图
                     label: {
                         show: true,
                         fontSize: 11
@@ -294,6 +295,22 @@ class ChinaMapApp {
                 }
             };
         });
+    }
+
+    // 计算多边形的边界框
+    getPolygonBounds(coordinates) {
+        let minLng = Infinity, maxLng = -Infinity;
+        let minLat = Infinity, maxLat = -Infinity;
+
+        coordinates.forEach(point => {
+            const [lng, lat] = point;
+            minLng = Math.min(minLng, lng);
+            maxLng = Math.max(maxLng, lng);
+            minLat = Math.min(minLat, lat);
+            maxLat = Math.max(maxLat, lat);
+        });
+
+        return { minLng, maxLng, minLat, maxLat };
     }
 
     // 根据省份名称查找省份
